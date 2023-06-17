@@ -9,11 +9,20 @@
   import End from "./lib/End.svelte";
   import { invoke } from "@tauri-apps/api/tauri";
 
+  let promise = invoke("get_default");
+
   let current_page_id = 0;
+
+  function pressedNext() {
+    current_page_id += 1;
+  }
+  function pressedPrevious() {
+    current_page_id -= 1;
+  }
 </script>
 
 <main>
-  {#if current_page_id <= 0}
+  {#if current_page_id == 0}
     <Landing />
   {:else if current_page_id == 1}
     <Menu />
@@ -27,7 +36,31 @@
     <Description />
   {:else if current_page_id == 6}
     <Equipment />
-  {:else if current_page_id >= 7}
+  {:else if current_page_id == 7}
     <End />
   {/if}
+
+  <div class="flex w-full">
+    {#if current_page_id == 0}
+      <button class="w-1/3 py-2 rounded font-bold bg-slate-200 text-slate-900"
+        >Previous</button
+      >
+    {:else}
+      <button
+        class="w-1/3 py-2 rounded font-bold bg-blue-200 text-slate-900 hover:bg-teal-400"
+        on:click={pressedPrevious}>Previous</button
+      >
+    {/if}
+    <div class="w-1/3" />
+    {#if current_page_id == 7}
+      <button class="w-1/3 py-2 rounded font-bold bg-slate-200 text-slate-900"
+        >Next</button
+      >
+    {:else}
+      <button
+        class="w-1/3 py-2 rounded font-bold bg-blue-200 text-slate-900 hover:bg-teal-400"
+        on:click={pressedNext}>Next</button
+      >
+    {/if}
+  </div>
 </main>
