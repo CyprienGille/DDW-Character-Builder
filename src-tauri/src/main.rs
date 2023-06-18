@@ -10,6 +10,40 @@ use std::{
 };
 use tauri::api::dialog::blocking::FileDialogBuilder;
 
+//////////////////// Data stuff
+#[derive(Deserialize, Serialize, Debug, Default)]
+enum Change {
+    #[default]
+    Nothing,
+    Add {
+        val: i32,
+    },
+    Subtract {
+        val: i32,
+    },
+    Append {
+        val: String,
+    },
+    Set {
+        val: String,
+    },
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+struct Effect {
+    variable_name: String,
+    desc: String,
+    change: Change,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+struct Choice {
+    name: String,
+    desc: String,
+    effects: Vec<Effect>,
+}
+
+//////////////////// Character stuff
 #[derive(Deserialize, Serialize, Debug, Default)]
 struct Spell {
     prep: String, // Is prepared
@@ -66,7 +100,7 @@ struct Character {
     prof_st_wis: bool,
     prof_st_cha: bool,
     st_mods: String,  // Saving Throws modifiers
-    acro: ProfOption, // Abilities (ex: Acroobatics)
+    acro: ProfOption, // Abilities (ex: Acrobatics)
     anim: ProfOption,
     arca: ProfOption,
     athl: ProfOption,
@@ -171,6 +205,50 @@ struct Character {
     spells: Vec<Spell>,
 }
 
+//////////////////// functions
+#[tauri::command]
+fn get_empty_choices() -> Vec<Choice> {
+    vec![]
+}
+
+#[tauri::command]
+async fn open_choices_file() -> Vec<Choice> {
+    let choices = match FileDialogBuilder::new().pick_file() {
+        Some(path_buffer) => read_choices_from_file(path_buffer).unwrap_or_default(),
+        None => Vec::<Choice>::default(),
+    };
+    choices
+}
+
+fn read_choices_from_file<P: AsRef<Path>>(path: P) -> Result<Vec<Choice>, Box<dyn Error>> {
+    let file = File::open(path)?;
+    let reader = BufReader::new(file);
+
+    let choices = serde_json::from_reader(reader)?;
+
+    Ok(choices)
+}
+
+#[tauri::command]
+fn handle_choice(choice: Choice, mut chara: Character) -> Character {
+    for effect in choice.effects.iter() {
+        match effect.variable_name.as_str() {
+            "size" => {
+                if let Change::Set { val } = &effect.change {
+                    chara.size = val.to_string();
+                }
+            }
+            "bg" => {
+                if let Change::Set { val } = &effect.change {
+                    chara.bg = val.to_string();
+                }
+            }
+            _ => {}
+        }
+    }
+    chara
+}
+
 #[tauri::command]
 fn get_default() -> Character {
     Character {
@@ -212,6 +290,9 @@ fn save_character_to_file(c: Character) {
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
+            get_empty_choices,
+            open_choices_file,
+            handle_choice,
             open_file,
             get_default,
             save_character_to_file

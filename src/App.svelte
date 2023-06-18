@@ -8,8 +8,7 @@
   import Equipment from "./lib/Equipment.svelte";
   import End from "./lib/End.svelte";
   import { invoke } from "@tauri-apps/api/tauri";
-
-  let promise = invoke("get_default");
+  import { c } from "./stores";
 
   let current_page_id = 0;
 
