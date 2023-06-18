@@ -1,7 +1,7 @@
-# Tauri + Svelte + Typescript
+# DnDWithin Character Builder (WIP)
 
-This template should help get you started developing with Tauri, Svelte and TypeScript in Vite.
+This is a character builder meant to work with [DnDWithin](https://github.com/CyprienGille/DnDWithin). 
 
-## Recommended IDE Setup
+**This is a work in progress.**
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
+Note: The DDW Character builder is meant as a digital tool for products you already own. Please only access content in accordance with your local laws.
