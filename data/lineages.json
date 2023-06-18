@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Hill Dwarf",
+    "desc": "Con+2, Wis+1",
+    "effects": [
+      {
+        "desc": "Your size is Medium",
+        "variable_name": "size",
+        "change": {
+          "Set": {
+            "val": "Medium"
+          }
+        }
+      },
+      {
+        "desc": "Your speed is 25ft.",
+        "variable_name": "speeds",
+        "change": {
+          "Append": {
+            "val": "25ft. (Walk)\n"
+          }
+        }
+      },
+      {
+        "desc": "Your speed is not reduced by wearing heavy armor.",
+        "variable_name": "features_1",
+        "change": {
+          "Append": {
+            "val": "Your speed is not reduced by wearing heavy armor.\n"
+          }
+        }
+      },
+      {
+        "desc": "Your have darkvision up to 60ft.",
+        "variable_name": "senses",
+        "change": {
+          "Append": {
+            "val": "Darkvision (60ft.)\n"
+          }
+        }
+      },
+      {
+        "desc": "Your have advantage on saving throws against poison.",
+        "variable_name": "st_mods",
+        "change": {
+          "Append": {
+            "val": "A against poison.\n"
+          }
+        }
+      }
+    ]
+  }
+]

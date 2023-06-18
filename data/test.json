@@ -1,0 +1,329 @@
+{
+  "name": "Character name",
+  "class_level": "",
+  "player_name": "",
+  "race": "",
+  "bg": "",
+  "exp": 0,
+  "str": 0,
+  "dex": 0,
+  "con": 0,
+  "int": 0,
+  "wis": 0,
+  "cha": 0,
+  "prof_mod": 0,
+  "prof_st_str": false,
+  "prof_st_dex": false,
+  "prof_st_con": false,
+  "prof_st_int": false,
+  "prof_st_wis": false,
+  "prof_st_cha": false,
+  "st_mods": "",
+  "acro": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "anim": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "arca": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "athl": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "dece": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "hist": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "insi": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "inti": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "inve": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "medi": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "natu": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "perc": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "perf": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "pers": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "reli": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "slei": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "stea": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "surv": {
+    "mult": 0.0,
+    "text": ""
+  },
+  "ac": 0,
+  "res": "",
+  "speeds": "",
+  "profs": "",
+  "max_hp": 0,
+  "hp": 0,
+  "temp_hp": 0,
+  "hd_total": "",
+  "hd": "",
+  "ds_s_1": false,
+  "ds_s_2": false,
+  "ds_s_3": false,
+  "ds_f_1": false,
+  "ds_f_2": false,
+  "ds_f_3": false,
+  "actions": "",
+  "senses": "",
+  "atk_1": {
+    "name": "",
+    "dmg": "",
+    "hit": "",
+    "notes": ""
+  },
+  "atk_2": {
+    "name": "",
+    "dmg": "",
+    "hit": "",
+    "notes": ""
+  },
+  "atk_3": {
+    "name": "",
+    "dmg": "",
+    "hit": "",
+    "notes": ""
+  },
+  "atk_4": {
+    "name": "",
+    "dmg": "",
+    "hit": "",
+    "notes": ""
+  },
+  "atk_5": {
+    "name": "",
+    "dmg": "",
+    "hit": "",
+    "notes": ""
+  },
+  "atk_6": {
+    "name": "",
+    "dmg": "",
+    "hit": "",
+    "notes": ""
+  },
+  "features_1": "",
+  "features_2": "",
+  "features_3": "",
+  "cp": 0,
+  "sp": 0,
+  "ep": 0,
+  "gp": 0,
+  "pp": 0,
+  "eq_1": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_2": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_3": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_4": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_5": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_6": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_7": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_8": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_9": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_10": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_11": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_12": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_13": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_14": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_15": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_16": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_17": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_18": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_19": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_20": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_21": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_22": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_23": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_24": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_25": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_26": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_27": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_28": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_29": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "eq_30": {
+    "name": "",
+    "qty": 0,
+    "w": ""
+  },
+  "gender": "",
+  "age": "",
+  "size": "Medium",
+  "height": "",
+  "weight": "",
+  "alig": "",
+  "faith": "",
+  "skin": "",
+  "eyes": "",
+  "hair": "",
+  "appearance": "",
+  "allies": "",
+  "p_traits": "",
+  "ideals": "",
+  "bonds": "",
+  "flaws": "",
+  "backstory": "",
+  "notes_1": "",
+  "notes_2": "",
+  "sp_class": "",
+  "sp_ab": "",
+  "sp_dc": "",
+  "sp_atk": "",
+  "spells": []
+}
