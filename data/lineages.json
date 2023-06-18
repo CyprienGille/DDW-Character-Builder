@@ -23,7 +23,7 @@
       },
       {
         "desc": "Your speed is not reduced by wearing heavy armor.",
-        "variable_name": "features_1",
+        "variable_name": "features_2",
         "change": {
           "Append": {
             "val": "Your speed is not reduced by wearing heavy armor.\n"
@@ -45,6 +45,183 @@
         "change": {
           "Append": {
             "val": "A against poison.\n"
+          }
+        }
+      },
+      {
+        "desc": "Your have proficiency with the battleaxe, handaxe, light hammer and warhammer.",
+        "variable_name": "profs",
+        "change": {
+          "Append": {
+            "val": "Battleaxe, Handaxe, Light Hammer, Warhammer.\n"
+          }
+        }
+      },
+      {
+        "desc": "Your have proficiency with either smith's tools, brewer's supplies, or mason's tools.",
+        "variable_name": "profs",
+        "change": {
+          "Append": {
+            "val": "Smith's tools OR Brewer's supplies OR Mason's tools\n"
+          }
+        }
+      },
+      {
+        "desc": "Stonecunning.",
+        "variable_name": "features_2",
+        "change": {
+          "Append": {
+            "val": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.\n"
+          }
+        }
+      },
+      {
+        "desc": "You can speak Common and Dwarvish.",
+        "variable_name": "profs",
+        "change": {
+          "Append": {
+            "val": "Common, Dwarvish\n"
+          }
+        }
+      },
+      {
+        "desc": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
+        "variable_name": "features_2",
+        "change": {
+          "Append": {
+            "val": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.\n"
+          }
+        }
+      },
+      {
+        "desc": "",
+        "variable_name": "con",
+        "change": {
+          "Add": {
+            "val": 2
+          }
+        }
+      },
+      {
+        "desc": "",
+        "variable_name": "wis",
+        "change": {
+          "Add": {
+            "val": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Mountain Dwarf",
+    "desc": "Con+2, Str+2",
+    "effects": [
+      {
+        "desc": "Your size is Medium",
+        "variable_name": "size",
+        "change": {
+          "Set": {
+            "val": "Medium"
+          }
+        }
+      },
+      {
+        "desc": "Your speed is 25ft.",
+        "variable_name": "speeds",
+        "change": {
+          "Append": {
+            "val": "25ft. (Walk)\n"
+          }
+        }
+      },
+      {
+        "desc": "Your speed is not reduced by wearing heavy armor.",
+        "variable_name": "features_2",
+        "change": {
+          "Append": {
+            "val": "Your speed is not reduced by wearing heavy armor.\n"
+          }
+        }
+      },
+      {
+        "desc": "Your have darkvision up to 60ft.",
+        "variable_name": "senses",
+        "change": {
+          "Append": {
+            "val": "Darkvision (60ft.)\n"
+          }
+        }
+      },
+      {
+        "desc": "Your have advantage on saving throws against poison.",
+        "variable_name": "st_mods",
+        "change": {
+          "Append": {
+            "val": "A against poison.\n"
+          }
+        }
+      },
+      {
+        "desc": "Your have proficiency with the battleaxe, handaxe, light hammer and warhammer.",
+        "variable_name": "profs",
+        "change": {
+          "Append": {
+            "val": "Battleaxe, Handaxe, Light Hammer, Warhammer.\n"
+          }
+        }
+      },
+      {
+        "desc": "Your have proficiency with either smith's tools, brewer's supplies, or mason's tools.",
+        "variable_name": "profs",
+        "change": {
+          "Append": {
+            "val": "Smith's tools OR Brewer's supplies OR Mason's tools\n"
+          }
+        }
+      },
+      {
+        "desc": "Stonecunning.",
+        "variable_name": "features_2",
+        "change": {
+          "Append": {
+            "val": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.\n"
+          }
+        }
+      },
+      {
+        "desc": "You can speak Common and Dwarvish.",
+        "variable_name": "profs",
+        "change": {
+          "Append": {
+            "val": "Common, Dwarvish\n"
+          }
+        }
+      },
+      {
+        "desc": "You have proficiency with light and medium armor.",
+        "variable_name": "profs",
+        "change": {
+          "Append": {
+            "val": "Light and Medium armor\n"
+          }
+        }
+      },
+      {
+        "desc": "",
+        "variable_name": "con",
+        "change": {
+          "Add": {
+            "val": 2
+          }
+        }
+      },
+      {
+        "desc": "",
+        "variable_name": "str",
+        "change": {
+          "Add": {
+            "val": 2
           }
         }
       }

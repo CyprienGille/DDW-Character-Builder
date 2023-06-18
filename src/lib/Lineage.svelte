@@ -3,6 +3,7 @@
   import { c } from "../stores";
 
   let hide_details = true;
+  let picked_choice = false;
 
   function toggle_details() {
     hide_details = !hide_details;
@@ -18,7 +19,7 @@
     invoke("handle_choice", { choice: choice, chara: $c }).then(
       (chara) => ($c = chara)
     );
-    console.log($c);
+    picked_choice = true;
   }
 </script>
 
@@ -30,7 +31,7 @@
       class="w-full px-4 py-5 mb-2 bg-white border rounded-md shadow sm:px-6"
     >
       <h3 class="text-lg font-medium leading-6 text-gray-900">
-        Pick a Lineage/Race.
+        Pick a Lineage.
       </h3>
       <p class="max-w-2xl mt-1 text-sm text-gray-500">
         This will decide your size, speed, and give you racial traits, languages
@@ -72,8 +73,9 @@
                   {/each}
                 </div>
                 <div>
-                  <button on:click={() => pick_choice(choice)}
-                    >Pick Lineage</button
+                  <button
+                    class="py-2 px-4 flex justify-center items-center bg-green-500 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full"
+                    on:click={() => pick_choice(choice)}>Pick Lineage</button
                   >
                 </div>
               {/if}
