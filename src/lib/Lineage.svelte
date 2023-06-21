@@ -2,11 +2,16 @@
   import { invoke } from "@tauri-apps/api/tauri";
   import { c } from "../stores";
 
-  let hide_details = true;
-  let picked_choice = false;
+  let picked_details = [];
+  let picked_choice = -1;
 
-  function toggle_details() {
-    hide_details = !hide_details;
+  function toggle_details(i) {
+    if (picked_details.includes(i)) {
+      picked_details.splice(picked_details.indexOf(i), 1);
+    } else {
+      picked_details.push(i);
+    }
+    picked_details = picked_details;
   }
 
   let promise: Promise<any> = invoke("get_empty_choices");
@@ -15,11 +20,11 @@
     promise = invoke("open_choices_file");
   }
 
-  function pick_choice(choice) {
+  function pick_choice(choice, i) {
     invoke("handle_choice", { choice: choice, chara: $c }).then(
       (chara) => ($c = chara)
     );
-    picked_choice = true;
+    picked_choice = i;
   }
 </script>
 
@@ -40,7 +45,7 @@
     </div>
     <ul class="flex flex-col">
       {#await promise then lineages}
-        {#each lineages as choice}
+        {#each lineages as choice, i}
           <li class="flex flex-row mb-2 border-gray-400">
             <div
               class="transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none bg-white rounded-md flex flex-1 items-center p-4"
@@ -51,16 +56,16 @@
                   {choice.desc}
                 </div>
               </div>
-              {#if hide_details}
+              {#if !picked_details.includes(i)}
                 <button
-                  on:click={toggle_details}
+                  on:click={() => toggle_details(i)}
                   class="flex justify-end w-24 text-right text-blue-500 underline"
                 >
                   Details
                 </button>
               {:else}
                 <button
-                  on:click={toggle_details}
+                  on:click={() => toggle_details(i)}
                   class="flex justify-end w-24 text-right text-blue-500 underline"
                 >
                   Hide Details
@@ -75,7 +80,7 @@
                 <div>
                   <button
                     class="py-2 px-4 flex justify-center items-center bg-green-500 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full"
-                    on:click={() => pick_choice(choice)}>Pick Lineage</button
+                    on:click={() => pick_choice(choice, i)}>Pick Lineage</button
                   >
                 </div>
               {/if}
