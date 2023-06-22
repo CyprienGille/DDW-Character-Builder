@@ -1,230 +1,217 @@
 [
   {
-    "name": "Hill Dwarf",
-    "desc": "Con+2, Wis+1",
-    "effects": [
+    "name": "Dragonborn",
+    "source": "SRD",
+    "scores": {
+      "str": 2,
+      "dex": 0,
+      "con": 0,
+      "int": 0,
+      "wis": 0,
+      "cha": 1
+    },
+    "speeds": {
+      "walk": 30
+    },
+    "size": "Medium",
+    "features": [
+      "Breath Weapon. You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
+      "Damage Resistance. You have resistance to the damage type associated with your draconic ancestry."
+    ],
+    "darkvision": 60,
+    "languages": [
+      "common",
+      "draconic"
+    ],
+    "draconic_ancestries": [
       {
-        "desc": "Your size is Medium",
-        "variable_name": "size",
-        "change": {
-          "Set": {
-            "val": "Medium"
-          }
-        }
+        "dragon": "Black",
+        "dmg_type": "Acid",
+        "breath_weapon": "5 by 30 ft. line (Dex save)"
       },
       {
-        "desc": "Your speed is 25ft.",
-        "variable_name": "speeds",
-        "change": {
-          "Append": {
-            "val": "25ft. (Walk)\n"
-          }
-        }
+        "dragon": "Blue",
+        "dmg_type": "Lightning",
+        "breath_weapon": "5 by 30 ft. line (Dex save)"
       },
       {
-        "desc": "Your speed is not reduced by wearing heavy armor.",
-        "variable_name": "features_2",
-        "change": {
-          "Append": {
-            "val": "Your speed is not reduced by wearing heavy armor.\n"
-          }
-        }
+        "dragon": "Brass",
+        "dmg_type": "Fire",
+        "breath_weapon": "5 by 30 ft. line (Dex save)"
       },
       {
-        "desc": "Your have darkvision up to 60ft.",
-        "variable_name": "senses",
-        "change": {
-          "Append": {
-            "val": "Darkvision (60ft.)\n"
-          }
-        }
+        "dragon": "Bronze",
+        "dmg_type": "Lightning",
+        "breath_weapon": "5 by 30 ft. line (Dex save)"
       },
       {
-        "desc": "Your have advantage on saving throws against poison.",
-        "variable_name": "st_mods",
-        "change": {
-          "Append": {
-            "val": "A against poison.\n"
-          }
-        }
+        "dragon": "Copper",
+        "dmg_type": "Acid",
+        "breath_weapon": "5 by 30 ft. line (Dex save)"
       },
       {
-        "desc": "Your have proficiency with the battleaxe, handaxe, light hammer and warhammer.",
-        "variable_name": "profs",
-        "change": {
-          "Append": {
-            "val": "Battleaxe, Handaxe, Light Hammer, Warhammer.\n"
-          }
-        }
+        "dragon": "Gold",
+        "dmg_type": "Fire",
+        "breath_weapon": "15 ft. cone (Dex. save)"
       },
       {
-        "desc": "Your have proficiency with either smith's tools, brewer's supplies, or mason's tools.",
-        "variable_name": "profs",
-        "change": {
-          "Append": {
-            "val": "Smith's tools OR Brewer's supplies OR Mason's tools\n"
-          }
-        }
+        "dragon": "Green",
+        "dmg_type": "Poison",
+        "breath_weapon": "15 ft. cone (Con. save)"
       },
       {
-        "desc": "Stonecunning.",
-        "variable_name": "features_2",
-        "change": {
-          "Append": {
-            "val": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.\n"
-          }
-        }
+        "dragon": "Red",
+        "dmg_type": "Fire",
+        "breath_weapon": "15 ft. cone (Dex. save)"
       },
       {
-        "desc": "You can speak Common and Dwarvish.",
-        "variable_name": "profs",
-        "change": {
-          "Append": {
-            "val": "Common, Dwarvish\n"
-          }
-        }
+        "dragon": "Silver",
+        "dmg_type": "Cold",
+        "breath_weapon": "15 ft. cone (Con. save)"
       },
       {
-        "desc": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
-        "variable_name": "features_2",
-        "change": {
-          "Append": {
-            "val": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.\n"
-          }
-        }
-      },
-      {
-        "desc": "",
-        "variable_name": "con",
-        "change": {
-          "Add": {
-            "val": 2
-          }
-        }
-      },
-      {
-        "desc": "",
-        "variable_name": "wis",
-        "change": {
-          "Add": {
-            "val": 1
-          }
-        }
+        "dragon": "White",
+        "dmg_type": "Cold",
+        "breath_weapon": "15 ft. cone (Con. save)"
       }
+    ],
+    "age_fluff": "Young dragonborn grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.",
+    "size_fluff": "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds."
+  },
+  {
+    "name": "Dwarf (Hill)",
+    "source": "SRD",
+    "scores": {
+      "str": 0,
+      "dex": 0,
+      "con": 2,
+      "int": 0,
+      "wis": 1,
+      "cha": 0
+    },
+    "speeds": {
+      "walk": 30
+    },
+    "size": "Medium",
+    "features": [
+      "Speed. Your speed is not reduced by wearing heavy armor.",
+      "Stonecunning. Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+      "Dwarven Toughness. Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
+    ],
+    "hp_mod": "+level",
+    "st_mods": [
+      "Adv against poison"
+    ],
+    "darkvision": 60,
+    "languages": [
+      "common",
+      "dwarvish"
+    ],
+    "age_fluff": "Dwarves mature at the same rate as humans, but they're considered young until they reach the age of 50. On average, they live about 350 years.",
+    "size_fluff": "Dwarves stand between 4 and 5 feet tall and average about 150 pounds.",
+    "weapon_profs": [
+      "battleaxe",
+      "handaxe",
+      "light hammer",
+      "warhammer"
+    ],
+    "dmg_res": [
+      "poison"
+    ],
+    "tool_prof_choices": [
+      "mason's tools",
+      "smith's tools",
+      "brewer's supplies"
     ]
   },
   {
-    "name": "Mountain Dwarf",
-    "desc": "Con+2, Str+2",
-    "effects": [
-      {
-        "desc": "Your size is Medium",
-        "variable_name": "size",
-        "change": {
-          "Set": {
-            "val": "Medium"
-          }
-        }
-      },
-      {
-        "desc": "Your speed is 25ft.",
-        "variable_name": "speeds",
-        "change": {
-          "Append": {
-            "val": "25ft. (Walk)\n"
-          }
-        }
-      },
-      {
-        "desc": "Your speed is not reduced by wearing heavy armor.",
-        "variable_name": "features_2",
-        "change": {
-          "Append": {
-            "val": "Your speed is not reduced by wearing heavy armor.\n"
-          }
-        }
-      },
-      {
-        "desc": "Your have darkvision up to 60ft.",
-        "variable_name": "senses",
-        "change": {
-          "Append": {
-            "val": "Darkvision (60ft.)\n"
-          }
-        }
-      },
-      {
-        "desc": "Your have advantage on saving throws against poison.",
-        "variable_name": "st_mods",
-        "change": {
-          "Append": {
-            "val": "A against poison.\n"
-          }
-        }
-      },
-      {
-        "desc": "Your have proficiency with the battleaxe, handaxe, light hammer and warhammer.",
-        "variable_name": "profs",
-        "change": {
-          "Append": {
-            "val": "Battleaxe, Handaxe, Light Hammer, Warhammer.\n"
-          }
-        }
-      },
-      {
-        "desc": "Your have proficiency with either smith's tools, brewer's supplies, or mason's tools.",
-        "variable_name": "profs",
-        "change": {
-          "Append": {
-            "val": "Smith's tools OR Brewer's supplies OR Mason's tools\n"
-          }
-        }
-      },
-      {
-        "desc": "Stonecunning.",
-        "variable_name": "features_2",
-        "change": {
-          "Append": {
-            "val": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.\n"
-          }
-        }
-      },
-      {
-        "desc": "You can speak Common and Dwarvish.",
-        "variable_name": "profs",
-        "change": {
-          "Append": {
-            "val": "Common, Dwarvish\n"
-          }
-        }
-      },
-      {
-        "desc": "You have proficiency with light and medium armor.",
-        "variable_name": "profs",
-        "change": {
-          "Append": {
-            "val": "Light and Medium armor\n"
-          }
-        }
-      },
-      {
-        "desc": "",
-        "variable_name": "con",
-        "change": {
-          "Add": {
-            "val": 2
-          }
-        }
-      },
-      {
-        "desc": "",
-        "variable_name": "str",
-        "change": {
-          "Add": {
-            "val": 2
-          }
-        }
-      }
+    "name": "Elf (High)",
+    "source": "SRD",
+    "scores": {
+      "str": 0,
+      "dex": 2,
+      "con": 0,
+      "int": 1,
+      "wis": 0,
+      "cha": 0
+    },
+    "speeds": {
+      "walk": 30
+    },
+    "size": "Medium",
+    "features": [
+      "Fey Ancestry. Magic can't put you to sleep.",
+      "Trance. Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is 'trance.') While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep."
+    ],
+    "st_mods": [
+      "Adv against being charmed"
+    ],
+    "darkvision": 60,
+    "languages": [
+      "common",
+      "elvish"
+    ],
+    "language_choices": [
+      "Abyssal",
+      "Celestial",
+      "Deep Speech",
+      "Draconic",
+      "Druidic",
+      "Dwarvish",
+      "Giant",
+      "Gnomish",
+      "Goblin",
+      "Halfling",
+      "Infernal",
+      "Orc",
+      "Primordial",
+      "Sylvan",
+      "Thieves' Cant",
+      "Undercommon"
+    ],
+    "age_fluff": "Although elves reach physical maturity at about the same age as humans, the elven understanding of adulthood goes beyond physical growth to encompass worldly experience. An elf typically claims adulthood and an adult name around the age of 100 and can live to be 750 years old.",
+    "size_fluff": "Elves range from under 5 to over 6 feet tall and have slender builds.",
+    "weapon_profs": [
+      "longsword",
+      "shortsword",
+      "shortbow",
+      "longbow"
+    ],
+    "skill_profs": [
+      "perception"
+    ]
+  },
+  {
+    "name": "Gnome (Rock)",
+    "source": "SRD",
+    "scores": {
+      "str": 0,
+      "dex": 0,
+      "con": 1,
+      "int": 2,
+      "wis": 0,
+      "cha": 0
+    },
+    "speeds": {
+      "walk": 25
+    },
+    "size": "Small",
+    "features": [
+      "Artificer's Lore. Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply.",
+      "Tinker. Using tinker's tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time. When you create a device, choose one of the following options: Clockwork Toy. This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction. It makes noises as appropriate to the creature it represents. Fire Starter. The device produces a miniature flame, which you can use to light a candle, torch, or campfire. Using the device requires your action. Music Box. When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song's end or when it is closed."
+    ],
+    "st_mods": [
+      "Adv on INT, WIS, CHA against magic"
+    ],
+    "darkvision": 60,
+    "languages": [
+      "common",
+      "gnomish"
+    ],
+    "age_fluff": "Gnomes mature at the same rate humans do, and most are expected to settle down into an adult life by around age 40. They can live 350 to almost 500 years.",
+    "size_fluff": "Gnomes are between 3 and 4 feet tall and average about 40 pounds.",
+    "tool_profs": [
+      "tinker's tools"
     ]
   }
 ]

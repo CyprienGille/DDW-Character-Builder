@@ -2,6 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use serde::{Deserialize, Serialize};
+use serde_json::Value;
 use std::{
     error::Error,
     fs::{write, File},
@@ -10,40 +11,12 @@ use std::{
 };
 use tauri::api::dialog::blocking::FileDialogBuilder;
 
-//////////////////// Data stuff
-#[derive(Deserialize, Serialize, Debug, Default)]
-enum Change {
-    #[default]
-    Nothing,
-    Add {
-        val: i32,
-    },
-    Subtract {
-        val: i32,
-    },
-    Append {
-        val: String,
-    },
-    Set {
-        val: String,
-    },
-}
-
-#[derive(Deserialize, Serialize, Debug, Default)]
-struct Effect {
-    variable_name: String,
-    desc: String,
-    change: Change,
-}
-
 #[derive(Deserialize, Serialize, Debug, Default)]
 struct Choice {
     name: String,
-    desc: String,
-    effects: Vec<Effect>,
+    picked: String,
 }
 
-//////////////////// Character stuff
 #[derive(Deserialize, Serialize, Debug, Default)]
 struct Spell {
     prep: String, // Is prepared
@@ -206,21 +179,27 @@ struct Character {
 }
 
 //////////////////// functions
+
 #[tauri::command]
 fn get_empty_choices() -> Vec<Choice> {
     vec![]
 }
 
 #[tauri::command]
-async fn open_choices_file() -> Vec<Choice> {
-    let choices = match FileDialogBuilder::new().pick_file() {
-        Some(path_buffer) => read_choices_from_file(path_buffer).unwrap_or_default(),
-        None => Vec::<Choice>::default(),
-    };
-    choices
+fn get_empty_options() -> Vec<Value> {
+    vec![]
 }
 
-fn read_choices_from_file<P: AsRef<Path>>(path: P) -> Result<Vec<Choice>, Box<dyn Error>> {
+#[tauri::command]
+async fn open_options_file() -> Vec<Value> {
+    let lineages = match FileDialogBuilder::new().pick_file() {
+        Some(path_buffer) => read_options_from_file(path_buffer).unwrap_or_default(),
+        None => Vec::<Value>::default(),
+    };
+    lineages
+}
+
+fn read_options_from_file<P: AsRef<Path>>(path: P) -> Result<Vec<Value>, Box<dyn Error>> {
     let file = File::open(path)?;
     let reader = BufReader::new(file);
 
@@ -230,35 +209,15 @@ fn read_choices_from_file<P: AsRef<Path>>(path: P) -> Result<Vec<Choice>, Box<dy
 }
 
 #[tauri::command]
-fn handle_choice(choice: Choice, mut chara: Character) -> Character {
-    for effect in choice.effects.iter() {
-        match effect.variable_name.as_str() {
-            "size" => {
-                if let Change::Set { val } = &effect.change {
-                    chara.size = val.to_string();
-                }
-            }
-            "bg" => {
-                if let Change::Set { val } = &effect.change {
-                    chara.bg = val.to_string();
-                }
-            }
-            _ => {}
-        }
-    }
-    chara
-}
-
-#[tauri::command]
-fn get_default() -> Character {
+fn get_default_character() -> Character {
     Character {
-        name: "Character name".to_string(),
+        name: "your character".to_string(),
         ..Default::default()
     }
 }
 
 #[tauri::command]
-async fn open_file() -> Character {
+async fn open_character_file() -> Character {
     let c = match FileDialogBuilder::new().pick_file() {
         Some(fp) => read_character_from_file(fp).unwrap_or_default(),
         None => Character::default(),
@@ -291,10 +250,10 @@ fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             get_empty_choices,
-            open_choices_file,
-            handle_choice,
-            open_file,
-            get_default,
+            get_empty_options,
+            open_options_file,
+            open_character_file,
+            get_default_character,
             save_character_to_file
         ])
         .run(tauri::generate_context!())

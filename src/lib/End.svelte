@@ -10,8 +10,8 @@
 
 <main>
   <div class="text-center text-2xl py-20">
-    Congratulations, you just finished building your character! Now, click on
-    the button below to save it as a DnDWithin-compatible .json file!
+    Congratulations, you just finished creating {$c.name}! Now, click on the
+    button below to save your work as a DnDWithin-compatible .json file!
   </div>
   <div class="text-center flex">
     <div class="w-1/3" />
