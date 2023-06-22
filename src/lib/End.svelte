@@ -16,7 +16,7 @@
   <div class="text-center flex">
     <div class="w-1/3" />
     <button
-      class="w-1/3 py-2 rounded-md font-bold text-xl bg-blue-200 text-slate-900 hover:bg-teal-400"
+      class="w-1/3 py-2 bg-green-500 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full"
       on:click={save_file}>Save my character</button
     >
     <div class="w-1/3" />
