@@ -14,13 +14,8 @@
     "allowlist": {
       "all": false,
       "dialog": {
-        "all": true,
         "open": true,
         "save": true
-      },
-      "shell": {
-        "all": false,
-        "open": true
       }
     },
     "bundle": {
