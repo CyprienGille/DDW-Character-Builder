@@ -92,7 +92,11 @@
     $lineage_choices.push(skill_prof_choice_2);
     $lineage_choices.push(score_choice_1);
     $lineage_choices.push(score_choice_2);
-    console.log($lineage_choices);
+    window.scrollBy({
+      left: 0,
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
   }
 </script>
 
