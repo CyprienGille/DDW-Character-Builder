@@ -1,10 +1,8 @@
 <script lang="ts">
   import Lineage from "./Lineage.svelte";
   import { invoke } from "@tauri-apps/api/tauri";
-  import { c } from "../stores";
 
   let picked_details = [];
-  let picked_choice = -1;
 
   function toggle_details(i) {
     if (picked_details.includes(i)) {
@@ -42,7 +40,7 @@
         {#each lineages as choice, i}
           <li class="flex flex-row mb-2 border-gray-400">
             <div
-              class="transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none bg-white rounded-md flex flex-1 items-center p-4"
+              class="transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none bg-white rounded-md flex flex-1 items-center px-4 py-2"
             >
               <div class="flex-1 pl-1 md:mr-16">
                 <div class="font-medium text-lg">{choice.name}</div>

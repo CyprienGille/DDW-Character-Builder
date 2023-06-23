@@ -1,11 +1,14 @@
 <script lang="ts">
-  import { each } from "svelte/internal";
   import { lineage_choices } from "../stores";
   export let choice;
 
   let tool_prof_choice = { name: "tool_prof_choice", picked: "none" };
   let draconic_choice = { name: "draconic_ancestry", picked: "none" };
   let language_choice = { name: "language_choice", picked: "none" };
+  let skill_prof_choice_1 = { name: "skill_prof_choice_1", picked: "none" };
+  let skill_prof_choice_2 = { name: "skill_prof_choice_2", picked: "none" };
+  let score_choice_1 = { name: "score_choice_1", picked: "none" };
+  let score_choice_2 = { name: "score_choice_2", picked: "none" };
 
   let picking_ok = false;
 
@@ -13,6 +16,10 @@
     let tp_picked = true; // default: we don't care
     let da_picked = true;
     let lan_picked = true;
+    let sk1_picked = true;
+    let sk2_picked = true;
+    let sc1_picked = true;
+    let sc2_picked = true;
     if (choice.tool_prof_choices != undefined) {
       tp_picked = tool_prof_choice.picked != "none";
     }
@@ -22,12 +29,30 @@
     if (choice.language_choices != undefined) {
       lan_picked = language_choice.picked != "none";
     }
-
-    picking_ok = tp_picked && da_picked && lan_picked;
+    if (choice.skill_prof_choices != undefined) {
+      sk1_picked = skill_prof_choice_1.picked != "none";
+      if (choice.skill_prof_choices.num > 1) {
+        sk2_picked = skill_prof_choice_2.picked != "none";
+      }
+    }
+    if (choice.score_choices != undefined) {
+      sc1_picked = score_choice_1.picked != "none";
+      if (choice.score_choices.num > 1) {
+        sc2_picked = score_choice_2.picked != "none";
+      }
+    }
+    picking_ok =
+      tp_picked &&
+      da_picked &&
+      lan_picked &&
+      sk1_picked &&
+      sk2_picked &&
+      sc1_picked &&
+      sc2_picked;
     return "";
   }
 
-  function add_sign(num) {
+  function add_sign(num: number) {
     let res = "";
     if (num >= 0) {
       res = "+ " + num;
@@ -49,12 +74,24 @@
     return res;
   }
 
+  function check_exclu(other, picked, exclu) {
+    if (picked == other.picked && exclu) {
+      other.picked = "none";
+    }
+
+    return "";
+  }
+
   function pick_this_lineage() {
     $lineage_choices = [];
-    $lineage_choices.push({ name: "lineage", picked: choice.name });
+    $lineage_choices.push({ name: "lineage", picked: choice });
     $lineage_choices.push(tool_prof_choice);
     $lineage_choices.push(draconic_choice);
     $lineage_choices.push(language_choice);
+    $lineage_choices.push(skill_prof_choice_1);
+    $lineage_choices.push(skill_prof_choice_2);
+    $lineage_choices.push(score_choice_1);
+    $lineage_choices.push(score_choice_2);
     console.log($lineage_choices);
   }
 </script>
@@ -81,6 +118,95 @@
       {#if choice.scores.cha != 0}
         <div class="my-1">Cha {add_sign(choice.scores.cha)}</div>
       {/if}
+
+      {#if choice.score_choices != undefined}
+        <div class="my-1 flex flex-row">
+          {#if score_choice_1.picked == "none"}
+            <form class="border-2 rounded-md border-red-100">
+              <select bind:value={score_choice_1.picked}>
+                {#each choice.score_choices.options as option}
+                  <option value={option}>
+                    {option}+1
+                  </option>
+                {/each}
+              </select>
+            </form>
+          {:else}
+            {check_picking_ok()}
+            {check_exclu(
+              score_choice_2,
+              score_choice_1.picked,
+              choice.score_choices.exclu
+            )}
+            <form class="border-2 rounded-md border-green-200">
+              <select
+                bind:value={score_choice_1.picked}
+                on:change={() =>
+                  check_exclu(
+                    score_choice_2,
+                    score_choice_1.picked,
+                    choice.score_choices.exclu
+                  )}
+              >
+                {#each choice.score_choices.options as option}
+                  <option value={option}>
+                    {option}+1
+                  </option>
+                {/each}
+              </select>
+            </form>
+          {/if}
+          {#if choice.score_choices.num > 1}
+            ;
+            {#if score_choice_2.picked == "none"}
+              {check_picking_ok()}
+              <form class="border-2 rounded-md border-red-100">
+                <select bind:value={score_choice_2.picked}>
+                  {#each choice.score_choices.options as option}
+                    {#if choice.score_choices.exclu && score_choice_1.picked == option}
+                      <div />
+                    {:else}
+                      <option value={option}>
+                        {option}+1
+                      </option>
+                    {/if}
+                  {/each}
+                </select>
+              </form>
+            {:else}
+              {check_picking_ok()}
+              {check_exclu(
+                score_choice_1,
+                score_choice_2.picked,
+                choice.score_choices.exclu
+              )}
+              <form class="border-2 rounded-md border-green-200">
+                <select
+                  bind:value={score_choice_2.picked}
+                  on:change={() =>
+                    check_exclu(
+                      score_choice_1,
+                      score_choice_2.picked,
+                      choice.score_choices.exclu
+                    )}
+                >
+                  {#each choice.score_choices.options as option}
+                    {#if choice.score_choices.exclu && score_choice_1.picked == option}
+                      <div />
+                    {:else}
+                      <option value={option}>
+                        {option}+1
+                      </option>
+                    {/if}
+                  {/each}
+                </select>
+              </form>
+            {/if}
+          {/if}
+          .
+        </div>
+      {/if}
+
       {#if choice.features != undefined}
         {#each choice.features as feature}
           <div class="my-1">{feature}</div>
@@ -118,11 +244,6 @@
         You have darkvision up to {choice.darkvision} ft.
       {/if}
 
-      {#if choice.languages != undefined}
-        <div class="my-1">
-          You know {insert_between(choice.languages, " and ")}.
-        </div>
-      {/if}
       {#if choice.weapon_profs != undefined}
         <div class="my-1">
           You are proficient with the {insert_between(
@@ -137,6 +258,100 @@
             You have resistance to {dmg_type} damage.
           </div>
         {/each}
+      {/if}
+
+      {#if choice.skill_profs != undefined}
+        <div class="my-1">
+          You are proficient in {insert_between(choice.skill_profs, " and ")}.
+        </div>
+      {/if}
+      {#if choice.skill_prof_choices != undefined}
+        <div class="my-1 flex flex-row">
+          You are proficient in
+          {#if skill_prof_choice_1.picked == "none"}
+            <form class="border-2 rounded-md border-red-100">
+              <select bind:value={skill_prof_choice_1.picked}>
+                {#each choice.skill_prof_choices.options as option}
+                  <option value={option}>
+                    {option}
+                  </option>
+                {/each}
+              </select>
+            </form>
+          {:else}
+            {check_picking_ok()}
+            {check_exclu(
+              skill_prof_choice_2,
+              skill_prof_choice_1.picked,
+              choice.skill_prof_choices.exclu
+            )}
+            <form class="border-2 rounded-md border-green-200">
+              <select
+                bind:value={skill_prof_choice_1.picked}
+                on:change={() =>
+                  check_exclu(
+                    skill_prof_choice_2,
+                    skill_prof_choice_1.picked,
+                    choice.skill_prof_choices.exclu
+                  )}
+              >
+                {#each choice.skill_prof_choices.options as option}
+                  <option value={option}>
+                    {option}
+                  </option>
+                {/each}
+              </select>
+            </form>
+          {/if}
+          {#if choice.skill_prof_choices.num > 1}
+            and
+            {#if skill_prof_choice_2.picked == "none"}
+              {check_picking_ok()}
+              <form class="border-2 rounded-md border-red-100">
+                <select bind:value={skill_prof_choice_2.picked}>
+                  {#each choice.skill_prof_choices.options as option}
+                    {#if choice.skill_prof_choices.exclu && skill_prof_choice_1.picked == option}
+                      <div />
+                    {:else}
+                      <option value={option}>
+                        {option}
+                      </option>
+                    {/if}
+                  {/each}
+                </select>
+              </form>
+            {:else}
+              {check_picking_ok()}
+              {check_exclu(
+                skill_prof_choice_1,
+                skill_prof_choice_2.picked,
+                choice.skill_prof_choices.exclu
+              )}
+              <form class="border-2 rounded-md border-green-200">
+                <select
+                  bind:value={skill_prof_choice_2.picked}
+                  on:change={() =>
+                    check_exclu(
+                      skill_prof_choice_1,
+                      skill_prof_choice_2.picked,
+                      choice.skill_prof_choices.exclu
+                    )}
+                >
+                  {#each choice.skill_prof_choices.options as option}
+                    {#if choice.skill_prof_choices.exclu && skill_prof_choice_1.picked == option}
+                      <div />
+                    {:else}
+                      <option value={option}>
+                        {option}
+                      </option>
+                    {/if}
+                  {/each}
+                </select>
+              </form>
+            {/if}
+          {/if}
+          .
+        </div>
       {/if}
 
       {#if choice.tool_profs != undefined}
@@ -170,6 +385,12 @@
               </select>
             </form>
           {/if}
+        </div>
+      {/if}
+
+      {#if choice.languages != undefined}
+        <div class="my-1">
+          You know {insert_between(choice.languages, " and ")}.
         </div>
       {/if}
       {#if choice.language_choices != undefined}
@@ -269,6 +490,10 @@
         </div>
       {/if}
 
+      {#if choice.spells != undefined}
+        <div class="my-1">{choice.spells.desc}</div>
+      {/if}
+
       {#if choice.age_fluff != undefined}
         <div class="my-1">{choice.age_fluff}</div>
       {/if}
@@ -282,13 +507,12 @@
         <button
           disabled
           class="py-2 px-2 flex justify-center items-center bg-slate-500 text-white w-full text-center text-base font-semibold shadow-md rounded-full"
-          on:click={() => pick_this_lineage()}
           >Pick Lineage
         </button>
       {:else}
         <button
           class="py-2 px-2 flex justify-center items-center bg-green-500 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full"
-          on:click={() => pick_this_lineage()}
+          on:click={pick_this_lineage}
           >Pick Lineage
         </button>
       {/if}
