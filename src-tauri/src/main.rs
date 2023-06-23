@@ -3,6 +3,7 @@
 
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
+use serde_json::Value::String as VString;
 use std::{
     error::Error,
     fs::{write, File},
@@ -14,7 +15,7 @@ use tauri::api::dialog::blocking::FileDialogBuilder;
 #[derive(Deserialize, Serialize, Debug, Default)]
 struct Choice {
     name: String,
-    picked: String,
+    picked: Value,
 }
 
 #[derive(Deserialize, Serialize, Debug, Default)]
@@ -235,6 +236,83 @@ fn read_character_from_file<P: AsRef<Path>>(path: P) -> Result<Character, Box<dy
 }
 
 #[tauri::command]
+fn finish_building(mut c: Character, lineage_choices: Vec<Choice>) {
+    c = fill_sheet(c, lineage_choices);
+    save_character_to_file(c);
+}
+
+fn fill_sheet(mut c: Character, lineage_choices: Vec<Choice>) -> Character {
+    let mut tool_profs = vec![];
+
+    for choice in lineage_choices {
+        match choice.name.as_str() {
+            "lineage" => {
+                if let Some(VString(name)) = choice.picked.get("name") {
+                    c.race = name.to_owned();
+                }
+            }
+
+            "tool_prof_choice" => {
+                if let VString(val) = choice.picked {
+                    tool_profs.push(val);
+                }
+            }
+
+            // "draconic_ancestry" => {
+            //     if let Some(picked) = choice.picked.get("name") {
+            //         if picked.to_string().as_str() != "none" {
+            //             c.profs += (picked.to_string() + "\n").as_str();
+            //         }
+            //     }
+            // }
+
+            // "language_choice" => {
+            //     if let Some(picked) = choice.picked.get("name") {
+            //         if picked.to_string().as_str() != "none" {
+            //             c.profs += (picked.to_string() + "\n").as_str();
+            //         }
+            //     }
+            // }
+
+            // "skill_prof_choice_1" => {
+            //     if let Some(picked) = choice.picked.get("name") {
+            //         if picked.to_string().as_str() != "none" {
+            //             c.profs += (picked.to_string() + "\n").as_str();
+            //         }
+            //     }
+            // }
+
+            // "skill_prof_choice_2" => {
+            //     if let Some(picked) = choice.picked.get("name") {
+            //         if picked.to_string().as_str() != "none" {
+            //             c.profs += (picked.to_string() + "\n").as_str();
+            //         }
+            //     }
+            // }
+
+            // "score_choice_1" => {
+            //     if let Some(picked) = choice.picked.get("name") {
+            //         if picked.to_string().as_str() != "none" {
+            //             c.profs += (picked.to_string() + "\n").as_str();
+            //         }
+            //     }
+            // }
+
+            // "score_choice_2" => {
+            //     if let Some(picked) = choice.picked.get("name") {
+            //         if picked.to_string().as_str() != "none" {
+            //             c.profs += (picked.to_string() + "\n").as_str();
+            //         }
+            //     }
+            // }
+            _ => {}
+        }
+    }
+    println!("{:?}", tool_profs);
+    c
+}
+
+#[tauri::command]
 fn save_character_to_file(c: Character) {
     let path = match FileDialogBuilder::new().save_file() {
         Some(path) => path,
@@ -254,6 +332,7 @@ fn main() {
             open_options_file,
             open_character_file,
             get_default_character,
+            finish_building,
             save_character_to_file
         ])
         .run(tauri::generate_context!())
