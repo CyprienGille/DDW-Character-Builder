@@ -20,8 +20,8 @@
     ],
     "darkvision": 60,
     "languages": [
-      "common",
-      "draconic"
+      "Common",
+      "Draconic"
     ],
     "draconic_ancestries": [
       {
@@ -104,8 +104,8 @@
     ],
     "darkvision": 60,
     "languages": [
-      "common",
-      "dwarvish"
+      "Common",
+      "Dwarvish"
     ],
     "age_fluff": "Dwarves mature at the same rate as humans, but they're considered young until they reach the age of 50. On average, they live about 350 years.",
     "size_fluff": "Dwarves stand between 4 and 5 feet tall and average about 150 pounds.",
@@ -148,8 +148,8 @@
     ],
     "darkvision": 60,
     "languages": [
-      "common",
-      "elvish"
+      "Common",
+      "Elvish"
     ],
     "language_choices": [
       "Abyssal",
@@ -178,7 +178,7 @@
       "longbow"
     ],
     "skill_profs": [
-      "perception"
+      "Perception"
     ]
   },
   {
@@ -205,13 +205,238 @@
     ],
     "darkvision": 60,
     "languages": [
-      "common",
-      "gnomish"
+      "Common",
+      "Gnomish"
     ],
     "age_fluff": "Gnomes mature at the same rate humans do, and most are expected to settle down into an adult life by around age 40. They can live 350 to almost 500 years.",
     "size_fluff": "Gnomes are between 3 and 4 feet tall and average about 40 pounds.",
     "tool_profs": [
       "tinker's tools"
     ]
+  },
+  {
+    "name": "Half-Elf",
+    "source": "SRD",
+    "scores": {
+      "str": 0,
+      "dex": 0,
+      "con": 0,
+      "int": 0,
+      "wis": 0,
+      "cha": 2
+    },
+    "score_choices": {
+      "num": 2,
+      "exclu": true,
+      "options": [
+        "Str",
+        "Dex",
+        "Con",
+        "Int",
+        "Wis"
+      ]
+    },
+    "speeds": {
+      "walk": 30
+    },
+    "size": "Medium",
+    "features": [
+      "Fey Ancestry. Magic can't put you to sleep."
+    ],
+    "st_mods": [
+      "Adv against being charmed"
+    ],
+    "darkvision": 60,
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
+    "language_choices": [
+      "Abyssal",
+      "Celestial",
+      "Deep Speech",
+      "Draconic",
+      "Druidic",
+      "Dwarvish",
+      "Giant",
+      "Gnomish",
+      "Goblin",
+      "Halfling",
+      "Infernal",
+      "Orc",
+      "Primordial",
+      "Sylvan",
+      "Thieves' Cant",
+      "Undercommon"
+    ],
+    "age_fluff": "Half-elves mature at the same rate humans do and reach adulthood around the age of 20. They live much longer than humans, however, often exceeding 180 years.",
+    "size_fluff": "Half-elves are about the same size as humans, ranging from 5 to 6 feet tall.",
+    "skill_prof_choices": {
+      "num": 2,
+      "exclu": true,
+      "options": [
+        "Acrobatics",
+        "Animal Handling",
+        "Arcana",
+        "Athletics",
+        "Deception",
+        "History",
+        "Insight",
+        "Intimidation",
+        "Investigation",
+        "Medicine",
+        "Nature",
+        "Perception",
+        "Performance",
+        "Persuasion",
+        "Religion",
+        "Sleight of Hand",
+        "Stealth",
+        "Survival"
+      ]
+    }
+  },
+  {
+    "name": "Half-Orc",
+    "source": "SRD",
+    "scores": {
+      "str": 2,
+      "dex": 0,
+      "con": 1,
+      "int": 0,
+      "wis": 0,
+      "cha": 0
+    },
+    "speeds": {
+      "walk": 30
+    },
+    "size": "Medium",
+    "features": [
+      "Relentless Endurance. When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
+      "Savage Attacks. When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit."
+    ],
+    "darkvision": 60,
+    "languages": [
+      "Common",
+      "Orc"
+    ],
+    "age_fluff": "Half-orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years.",
+    "size_fluff": "Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall.",
+    "skill_profs": [
+      "Intimidation"
+    ]
+  },
+  {
+    "name": "Halfling (Lightfoot)",
+    "source": "SRD",
+    "scores": {
+      "str": 0,
+      "dex": 2,
+      "con": 0,
+      "int": 0,
+      "wis": 0,
+      "cha": 1
+    },
+    "speeds": {
+      "walk": 25
+    },
+    "size": "Small",
+    "features": [
+      "Lucky. When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+      "Halfling Nimbleness. You can move through the space of any creature that is of a size larger than yours.",
+      "Naturally Stealthy. You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you."
+    ],
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
+    "age_fluff": "A halfling reaches adulthood at the age of 20 and generally lives into the middle of their second century.",
+    "size_fluff": "Halflings average about 3 feet tall and weigh about 40 pounds. ",
+    "st_mods": [
+      "Adv against being frightened"
+    ]
+  },
+  {
+    "name": "Human",
+    "source": "SRD",
+    "scores": {
+      "str": 1,
+      "dex": 1,
+      "con": 1,
+      "int": 1,
+      "wis": 1,
+      "cha": 1
+    },
+    "speeds": {
+      "walk": 30
+    },
+    "size": "Medium",
+    "languages": [
+      "Common"
+    ],
+    "language_choices": [
+      "Abyssal",
+      "Celestial",
+      "Deep Speech",
+      "Draconic",
+      "Druidic",
+      "Dwarvish",
+      "Elvish",
+      "Giant",
+      "Gnomish",
+      "Goblin",
+      "Halfling",
+      "Infernal",
+      "Orc",
+      "Primordial",
+      "Sylvan",
+      "Thieves' Cant",
+      "Undercommon"
+    ],
+    "age_fluff": "Humans reach adulthood in their late teens and live less than a century.",
+    "size_fluff": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall."
+  },
+  {
+    "name": "Tiefling",
+    "source": "SRD",
+    "scores": {
+      "str": 0,
+      "dex": 0,
+      "con": 0,
+      "int": 1,
+      "wis": 0,
+      "cha": 2
+    },
+    "speeds": {
+      "walk": 30
+    },
+    "size": "Medium",
+    "languages": [
+      "Common",
+      "Infernal"
+    ],
+    "darkvision": 60,
+    "dmg_res": [
+      "fire"
+    ],
+    "spells": {
+      "desc": "You know the thaumaturgy cantrip. Once you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell with this trait; you regain the ability to cast it when you finish a long rest. Once you reach 5th level, you can also cast the darkness spell once per day with this trait; you regain the ability to cast it when you finish a long rest. Charisma is your spellcasting ability for these spells.",
+      "list": [
+        {
+          "lvl": 1,
+          "name": "Thaumaturgy"
+        },
+        {
+          "lvl": 3,
+          "name": "Hellish Rebuke"
+        },
+        {
+          "lvl": 5,
+          "name": "Darkness"
+        }
+      ]
+    },
+    "age_fluff": "Tieflings mature at the same rate as humans but live a few years longer.",
+    "size_fluff": "Tieflings are about the same size and build as humans."
   }
 ]
