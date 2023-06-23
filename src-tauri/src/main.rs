@@ -235,6 +235,17 @@ fn read_character_from_file<P: AsRef<Path>>(path: P) -> Result<Character, Box<dy
     Ok(c)
 }
 
+fn insert_between(list: Vec<String>, elem: String) -> String {
+    let mut res = "".to_owned();
+    for (i, s) in list.iter().enumerate() {
+        res += s;
+        if i != list.len() - 1 {
+            res += &elem;
+        }
+    }
+    res
+}
+
 #[tauri::command]
 fn finish_building(mut c: Character, lineage_choices: Vec<Choice>) {
     c = fill_sheet(c, lineage_choices);
@@ -289,26 +300,15 @@ fn fill_sheet(mut c: Character, lineage_choices: Vec<Choice>) -> Character {
             //         }
             //     }
             // }
-
-            // "score_choice_1" => {
-            //     if let Some(picked) = choice.picked.get("name") {
-            //         if picked.to_string().as_str() != "none" {
-            //             c.profs += (picked.to_string() + "\n").as_str();
-            //         }
-            //     }
-            // }
-
-            // "score_choice_2" => {
-            //     if let Some(picked) = choice.picked.get("name") {
-            //         if picked.to_string().as_str() != "none" {
-            //             c.profs += (picked.to_string() + "\n").as_str();
-            //         }
-            //     }
-            // }
             _ => {}
         }
     }
-    println!("{:?}", tool_profs);
+    // Handle tool proficiencies
+    c.profs.push_str("=== Tools ===\n");
+    c.profs
+        .push_str(&insert_between(tool_profs, ", ".to_owned()));
+    c.profs.push('\n');
+
     c
 }
 
