@@ -72,7 +72,7 @@
             <h1
               class="mt-4 text-6xl font-bold leading-tight text-white sm:text-7xl"
             >
-              Get ready to build the next main character
+              Get ready to build your next character
             </h1>
             <div
               class="block px-4 py-3 mt-10 text-lg font-bold text-gray-800 uppercase bg-white rounded-lg hover:bg-gray-100"
