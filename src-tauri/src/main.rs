@@ -182,11 +182,6 @@ struct Character {
 //////////////////// functions
 
 #[tauri::command]
-fn get_empty_choices() -> Vec<Choice> {
-    vec![]
-}
-
-#[tauri::command]
 fn get_empty_options() -> Vec<Value> {
     vec![]
 }
@@ -327,7 +322,6 @@ fn save_character_to_file(c: Character) {
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
-            get_empty_choices,
             get_empty_options,
             open_options_file,
             open_character_file,
