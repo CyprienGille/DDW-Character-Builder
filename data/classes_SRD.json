@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Barbarian",
+    "source": "SRD",
+    "hit_dice": "1d12",
+    "profs": {
+      "armor": [
+        "light armor",
+        "medium armor",
+        "shields"
+      ],
+      "weapon": [
+        "simple weapons",
+        "martial weapons"
+      ],
+      "tool": [],
+      "saving_throw": [
+        "Strength",
+        "Constitution"
+      ],
+      "skill_choices": {
+        "num": 2,
+        "exclu": true,
+        "options": [
+          "Animal Handling",
+          "Athletics",
+          "Intimidation",
+          "Nature",
+          "Perception",
+          "Survival"
+        ]
+      }
+    },
+    "equipment_choices": [
+      [
+        "a greataxe",
+        "any martial melee weapon"
+      ],
+      [
+        "two handaxes",
+        "any simple weapon"
+      ]
+    ]
+  }
+]
