@@ -8,9 +8,8 @@
       Pick a name, and character creation options.
     </h3>
     <p class="max-w-2xl mt-1 text-sm text-gray-500">
-      Tip: You will always be able to modify your name in your character sheet
-      directly! So if you want to pick your lineage and class beforehand, just
-      proceed to the next step.
+      Tip: You will always be able to modify your name, allies, backstory, etc
+      in your character sheet directly!
     </p>
   </div>
   <div class="w-1/3 flex">

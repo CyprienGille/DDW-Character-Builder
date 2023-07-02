@@ -94,9 +94,9 @@
     {:else if current_page_id == 2}
       <Choice_Class />
     {:else if current_page_id == 3}
-      <Scores />
-    {:else if current_page_id == 4}
       <Description />
+    {:else if current_page_id == 4}
+      <Scores />
     {:else if current_page_id == 5}
       <Equipment />
     {:else if current_page_id == 6}
