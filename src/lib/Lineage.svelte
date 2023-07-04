@@ -69,8 +69,8 @@
       for (var i = 0; i < l - 1; i++) {
         res += list[i] + elem;
       }
+      res += list[l - 1];
     }
-    res += list[l - 1];
     return res;
   }
 
@@ -92,6 +92,7 @@
     $lineage_choices.push(skill_prof_choice_2);
     $lineage_choices.push(score_choice_1);
     $lineage_choices.push(score_choice_2);
+    // scroll to the bottom of the page
     window.scrollBy({
       left: 0,
       top: document.body.scrollHeight,
