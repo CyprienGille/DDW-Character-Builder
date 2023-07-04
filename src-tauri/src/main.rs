@@ -3,6 +3,8 @@
 
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
+// use serde_json::Value::Number as VNumber;
+use serde_json::Value::Object as VObject;
 use serde_json::Value::String as VString;
 use std::{
     error::Error,
@@ -249,6 +251,12 @@ fn finish_building(mut c: Character, lineage_choices: Vec<Choice>) {
 
 fn fill_sheet(mut c: Character, lineage_choices: Vec<Choice>) -> Character {
     let mut tool_profs = vec![];
+    let mut languages = vec![];
+    let mut speed_walk = 0;
+    let mut speed_swim = 0;
+    let mut speed_fly = 0;
+    let mut speed_burrow = 0;
+    let mut speed_climb = 0;
 
     for choice in lineage_choices {
         match choice.name.as_str() {
@@ -256,11 +264,50 @@ fn fill_sheet(mut c: Character, lineage_choices: Vec<Choice>) -> Character {
                 if let Some(VString(name)) = choice.picked.get("name") {
                     c.race = name.to_owned();
                 }
+                if let Some(VObject(scores)) = choice.picked.get("scores") {
+                    if let Some(num) = scores["str"].as_i64() {
+                        c.str += num as i32;
+                    }
+                    if let Some(num) = scores["dex"].as_i64() {
+                        c.dex += num as i32;
+                    }
+                    if let Some(num) = scores["con"].as_i64() {
+                        c.con += num as i32;
+                    }
+                    if let Some(num) = scores["int"].as_i64() {
+                        c.int += num as i32;
+                    }
+                    if let Some(num) = scores["wis"].as_i64() {
+                        c.wis += num as i32;
+                    }
+                    if let Some(num) = scores["cha"].as_i64() {
+                        c.cha += num as i32;
+                    }
+                }
+                if let Some(VObject(spd)) = choice.picked.get("speeds") {
+                    if let Some(num) = spd["walk"].as_i64() {
+                        speed_walk += num;
+                    }
+                    if let Some(num) = spd["climb"].as_i64() {
+                        speed_climb += num;
+                    }
+                    if let Some(num) = spd["swim"].as_i64() {
+                        speed_swim += num;
+                    }
+                    if let Some(num) = spd["fly"].as_i64() {
+                        speed_fly += num;
+                    }
+                    if let Some(num) = spd["burrow"].as_i64() {
+                        speed_burrow += num;
+                    }
+                }
             }
 
             "tool_prof_choice" => {
                 if let VString(val) = choice.picked {
-                    tool_profs.push(val);
+                    if val.as_str() != "none" {
+                        tool_profs.push(val);
+                    }
                 }
             }
 
@@ -271,40 +318,103 @@ fn fill_sheet(mut c: Character, lineage_choices: Vec<Choice>) -> Character {
             //         }
             //     }
             // }
+            "language_choice" => {
+                if let VString(val) = choice.picked {
+                    if val.as_str() != "none" {
+                        languages.push(val);
+                    }
+                }
+            }
 
-            // "language_choice" => {
-            //     if let Some(picked) = choice.picked.get("name") {
-            //         if picked.to_string().as_str() != "none" {
-            //             c.profs += (picked.to_string() + "\n").as_str();
-            //         }
-            //     }
-            // }
+            "skill_prof_choice_1" => {
+                if let VString(val) = choice.picked {
+                    if val.as_str() != "none" {
+                        change_prof_by_code(&mut c, val[..4].to_lowercase(), 1.0)
+                    }
+                }
+            }
 
-            // "skill_prof_choice_1" => {
-            //     if let Some(picked) = choice.picked.get("name") {
-            //         if picked.to_string().as_str() != "none" {
-            //             c.profs += (picked.to_string() + "\n").as_str();
-            //         }
-            //     }
-            // }
-
-            // "skill_prof_choice_2" => {
-            //     if let Some(picked) = choice.picked.get("name") {
-            //         if picked.to_string().as_str() != "none" {
-            //             c.profs += (picked.to_string() + "\n").as_str();
-            //         }
-            //     }
-            // }
+            "skill_prof_choice_2" => {
+                if let VString(val) = choice.picked {
+                    if val.as_str() != "none" {
+                        change_prof_by_code(&mut c, val[..4].to_lowercase(), 1.0)
+                    }
+                }
+            }
             _ => {}
         }
     }
-    // Handle tool proficiencies
+
+    // Handle proficiencies and languages
+    c.profs = "".to_string();
     c.profs.push_str("=== Tools ===\n");
     c.profs
         .push_str(&insert_between(tool_profs, ", ".to_owned()));
     c.profs.push('\n');
+    c.profs.push('\n');
+    c.profs.push_str("=== Languages ===\n");
+    c.profs
+        .push_str(&insert_between(languages, ", ".to_owned()));
+    c.profs.push('\n');
+    c.profs.push('\n');
 
     c
+}
+
+fn change_prof_by_code(c: &mut Character, skill_code: String, mult: f32) {
+    let skill = get_skill_by_code(c, skill_code.clone());
+    match skill {
+        Ok(s) => {
+            set_prof(s, mult);
+        }
+        Err(msg) => {
+            println!("{}", msg);
+            println!("{}", skill_code);
+        }
+    }
+}
+
+fn set_prof(skill: &mut ProfOption, mult: f32) {
+    skill.mult = mult;
+    match mult {
+        x if x == 0.5 => {
+            skill.text = "H".to_string();
+        }
+        x if x == 1.0 => {
+            skill.text = "P".to_string();
+        }
+        x if x == 2.0 => {
+            skill.text = "E".to_string();
+        }
+        _ => {}
+    }
+}
+
+fn get_skill_by_code(
+    c: &mut Character,
+    skill_code: String,
+) -> Result<&mut ProfOption, &'static str> {
+    match skill_code.as_str() {
+        "acro" => Ok(&mut c.acro),
+        "anim" => Ok(&mut c.anim),
+        "arca" => Ok(&mut c.arca),
+        "athl" => Ok(&mut c.athl),
+        "dece" => Ok(&mut c.dece),
+        "hist" => Ok(&mut c.hist),
+        "insi" => Ok(&mut c.insi),
+        "inti" => Ok(&mut c.inti),
+        "inve" => Ok(&mut c.inve),
+        "medi" => Ok(&mut c.medi),
+        "natu" => Ok(&mut c.natu),
+        "perc" => Ok(&mut c.perc),
+        "perf" => Ok(&mut c.perf),
+        "pers" => Ok(&mut c.pers),
+        "reli" => Ok(&mut c.reli),
+        "slei" => Ok(&mut c.slei),
+        "stea" => Ok(&mut c.stea),
+        "surv" => Ok(&mut c.surv),
+        _ => Err("Wrong skill code!"),
+    }
 }
 
 #[tauri::command]

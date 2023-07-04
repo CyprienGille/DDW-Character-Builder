@@ -2,7 +2,7 @@
   "name": "your character",
   "class_level": "",
   "player_name": "",
-  "race": "Elf (High)",
+  "race": "Half-Elf",
   "bg": "",
   "exp": 0,
   "str": 0,
@@ -20,16 +20,16 @@
   "prof_st_cha": false,
   "st_mods": "",
   "acro": {
-    "mult": 0.0,
-    "text": ""
+    "mult": 1.0,
+    "text": "P"
   },
   "anim": {
     "mult": 0.0,
     "text": ""
   },
   "arca": {
-    "mult": 0.0,
-    "text": ""
+    "mult": 1.0,
+    "text": "P"
   },
   "athl": {
     "mult": 0.0,
@@ -94,7 +94,7 @@
   "ac": 0,
   "res": "",
   "speeds": "",
-  "profs": "=== Tools ===\nnone\n",
+  "profs": "=== Tools ===\n\n\n=== Languages ===\nCelestial\n\n",
   "max_hp": 0,
   "hp": 0,
   "temp_hp": 0,
