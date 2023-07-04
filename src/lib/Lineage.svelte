@@ -222,6 +222,11 @@
           You have a {choice.speeds.walk} ft. walking speed.
         </div>
       {/if}
+      {#if choice.speeds.climb != undefined}
+        <div class="my-1">
+          You have a {choice.speeds.climb} ft. climbing speed.
+        </div>
+      {/if}
       {#if choice.speeds.swim != undefined}
         <div class="my-1">
           You have a {choice.speeds.swim} ft. swimming speed.
