@@ -242,68 +242,7 @@
             <div class="text-sm text-gray-500 whitespace-pre-line">
               {feature.desc}
             </div>
-            {#if feature.name == "Ability Score Improvement"}
-              {reserve_one_asi()}
-              {#if asis_array[get_current_n_asi()][0].picked == "none"}
-                <form class="border-2 rounded-md border-red-100">
-                  <select
-                    bind:value={asis_array[get_current_n_asi()][0].picked}
-                  >
-                    <option value="str">Str</option>
-                    <option value="dex">Dex</option>
-                    <option value="con">Con</option>
-                    <option value="int">Int</option>
-                    <option value="wis">Wis</option>
-                    <option value="cha">Cha</option>
-                  </select>
-                </form>
-              {:else}
-                {check_picking_ok()}
-                <form class="border-2 rounded-md border-green-200">
-                  <select
-                    bind:value={asis_array[get_current_n_asi()][0].picked}
-                  >
-                    <option value="str">Str</option>
-                    <option value="dex">Dex</option>
-                    <option value="con">Con</option>
-                    <option value="int">Int</option>
-                    <option value="wis">Wis</option>
-                    <option value="cha">Cha</option>
-                  </select>
-                </form>
-              {/if}
-              {#if asis_array[get_current_n_asi()][1].picked == "none"}
-                <form class="border-2 rounded-md border-red-100">
-                  <select
-                    bind:value={asis_array[get_current_n_asi()][1].picked}
-                  >
-                    <option value="str">Str</option>
-                    <option value="dex">Dex</option>
-                    <option value="con">Con</option>
-                    <option value="int">Int</option>
-                    <option value="wis">Wis</option>
-                    <option value="cha">Cha</option>
-                  </select>
-                </form>
-              {:else}
-                {check_picking_ok()}
-                <form class="border-2 rounded-md border-green-200">
-                  <select
-                    bind:value={asis_array[get_current_n_asi()][1].picked}
-                  >
-                    <option value="str">Str</option>
-                    <option value="dex">Dex</option>
-                    <option value="con">Con</option>
-                    <option value="int">Int</option>
-                    <option value="wis">Wis</option>
-                    <option value="cha">Cha</option>
-                  </select>
-                </form>
-              {/if}
-            {/if}
           </div>
-        {:else if feature.name == "Ability Score Improvement"}
-          {free_one_asi()}
         {/if}
       {/each}
     </div>
