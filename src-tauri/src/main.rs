@@ -4,7 +4,8 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 // use serde_json::Value::Number as VNumber;
-use serde_json::Value::Object as VObject;
+// use serde_json::Value::Object as VObject;
+use serde_json::Value::Array as VArray;
 use serde_json::Value::String as VString;
 use std::{
     error::Error,
@@ -264,7 +265,7 @@ fn fill_sheet(mut c: Character, lineage_choices: Vec<Choice>) -> Character {
                 if let Some(VString(name)) = choice.picked.get("name") {
                     c.race = name.to_owned();
                 }
-                if let Some(VObject(scores)) = choice.picked.get("scores") {
+                if let Some(scores) = choice.picked.get("scores") {
                     if let Some(num) = scores["str"].as_i64() {
                         c.str += num as i32;
                     }
@@ -284,21 +285,31 @@ fn fill_sheet(mut c: Character, lineage_choices: Vec<Choice>) -> Character {
                         c.cha += num as i32;
                     }
                 }
-                if let Some(VObject(spd)) = choice.picked.get("speeds") {
-                    if let Some(num) = spd["walk"].as_i64() {
+                if let Some(speeds) = choice.picked.get("speeds") {
+                    if let Some(num) = speeds["walk"].as_i64() {
                         speed_walk += num;
                     }
-                    if let Some(num) = spd["climb"].as_i64() {
+                    if let Some(num) = speeds["climb"].as_i64() {
                         speed_climb += num;
                     }
-                    if let Some(num) = spd["swim"].as_i64() {
+                    if let Some(num) = speeds["swim"].as_i64() {
                         speed_swim += num;
                     }
-                    if let Some(num) = spd["fly"].as_i64() {
+                    if let Some(num) = speeds["fly"].as_i64() {
                         speed_fly += num;
                     }
-                    if let Some(num) = spd["burrow"].as_i64() {
+                    if let Some(num) = speeds["burrow"].as_i64() {
                         speed_burrow += num;
+                    }
+                }
+                if let Some(VString(size)) = choice.picked.get("size") {
+                    c.size = size.to_string();
+                }
+                if let Some(VArray(langs)) = choice.picked.get("languages") {
+                    for lang in langs {
+                        if let Some(l) = lang.as_str() {
+                            languages.push(l.to_string());
+                        }
                     }
                 }
             }
@@ -343,6 +354,23 @@ fn fill_sheet(mut c: Character, lineage_choices: Vec<Choice>) -> Character {
             }
             _ => {}
         }
+    }
+
+    // Handle speeds
+    if speed_walk != 0 {
+        c.speeds.push_str(&format!("{}ft. (walk), ", speed_walk));
+    }
+    if speed_fly != 0 {
+        c.speeds.push_str(&format!("{}ft. (fly), ", speed_fly));
+    }
+    if speed_swim != 0 {
+        c.speeds.push_str(&format!("{}ft. (swim), ", speed_swim));
+    }
+    if speed_climb != 0 {
+        c.speeds.push_str(&format!("{}ft. (climb), ", speed_climb));
+    }
+    if speed_burrow != 0 {
+        c.speeds.push_str(&format!("{}ft. (burrow)", speed_burrow));
     }
 
     // Handle proficiencies and languages

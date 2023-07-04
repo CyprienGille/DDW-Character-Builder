@@ -1,16 +1,16 @@
 {
   "name": "your character",
-  "class_level": "",
+  "class_level": "Barbarian 3",
   "player_name": "",
-  "race": "Half-Elf",
+  "race": "Dragonborn",
   "bg": "",
   "exp": 0,
-  "str": 0,
+  "str": 2,
   "dex": 0,
   "con": 0,
   "int": 0,
   "wis": 0,
-  "cha": 0,
+  "cha": 1,
   "prof_mod": 0,
   "prof_st_str": false,
   "prof_st_dex": false,
@@ -20,16 +20,16 @@
   "prof_st_cha": false,
   "st_mods": "",
   "acro": {
-    "mult": 1.0,
-    "text": "P"
+    "mult": 0.0,
+    "text": ""
   },
   "anim": {
     "mult": 0.0,
     "text": ""
   },
   "arca": {
-    "mult": 1.0,
-    "text": "P"
+    "mult": 0.0,
+    "text": ""
   },
   "athl": {
     "mult": 0.0,
@@ -93,8 +93,8 @@
   },
   "ac": 0,
   "res": "",
-  "speeds": "",
-  "profs": "=== Tools ===\n\n\n=== Languages ===\nCelestial\n\n",
+  "speeds": "30ft. (walk), ",
+  "profs": "=== Tools ===\n\n\n=== Languages ===\nCommon, Draconic\n\n",
   "max_hp": 0,
   "hp": 0,
   "temp_hp": 0,
@@ -304,7 +304,7 @@
   },
   "gender": "",
   "age": "",
-  "size": "",
+  "size": "Medium",
   "height": "",
   "weight": "",
   "alig": "",
