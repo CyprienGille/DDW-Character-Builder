@@ -446,6 +446,29 @@ fn get_skill_by_code(
 }
 
 #[tauri::command]
+fn filter_skills(
+    mut c: Character,
+    initial_options: Vec<String>,
+    text_to_remove: String,
+) -> Vec<String> {
+    let mut remaining_options = initial_options.clone();
+    for skill in initial_options {
+        match get_skill_by_code(&mut c, skill[..4].to_lowercase()) {
+            Ok(prof_option) => {
+                if prof_option.text == text_to_remove {
+                    remaining_options.retain(|elem| *elem != skill);
+                }
+            }
+            Err(msg) => {
+                println!("{}", msg);
+                println!("{}", skill);
+            }
+        }
+    }
+    remaining_options
+}
+
+#[tauri::command]
 fn save_character_to_file(c: Character) {
     let path = match FileDialogBuilder::new().save_file() {
         Some(path) => path,
@@ -464,6 +487,7 @@ fn main() {
             open_options_file,
             open_character_file,
             get_default_character,
+            filter_skills,
             finish_building,
             save_character_to_file
         ])
