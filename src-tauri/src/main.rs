@@ -191,11 +191,10 @@ fn get_empty_options() -> Vec<Value> {
 
 #[tauri::command]
 async fn open_options_file() -> Vec<Value> {
-    let lineages = match FileDialogBuilder::new().pick_file() {
+    match FileDialogBuilder::new().pick_file() {
         Some(path_buffer) => read_options_from_file(path_buffer).unwrap_or_default(),
         None => Vec::<Value>::default(),
-    };
-    lineages
+    }
 }
 
 fn read_options_from_file<P: AsRef<Path>>(path: P) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -217,11 +216,10 @@ fn get_default_character() -> Character {
 
 #[tauri::command]
 async fn open_character_file() -> Character {
-    let c = match FileDialogBuilder::new().pick_file() {
+    match FileDialogBuilder::new().pick_file() {
         Some(fp) => read_character_from_file(fp).unwrap_or_default(),
         None => Character::default(),
-    };
-    c
+    }
 }
 
 fn read_character_from_file<P: AsRef<Path>>(path: P) -> Result<Character, Box<dyn Error>> {
