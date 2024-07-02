@@ -261,7 +261,7 @@ fn fill_sheet(mut c: Character, lineage_choices: Vec<Choice>) -> Character {
         match choice.name.as_str() {
             "lineage" => {
                 if let Some(VString(name)) = choice.picked.get("name") {
-                    c.race = name.to_owned();
+                    name.clone_into(&mut c.race);
                 }
                 if let Some(scores) = choice.picked.get("scores") {
                     if let Some(num) = scores["str"].as_i64() {
